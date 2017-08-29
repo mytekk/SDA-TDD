@@ -1,6 +1,8 @@
 package com.sda.cucumber;
 
+import com.sda.service.StringCalcService;
 import com.sda.service.WriteService;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -40,4 +42,18 @@ public class WriteServiceSteps {
         Assert.assertEquals("Expected value should be different", "Hello, Bartek, Maria and Antek", writeService.action(givenName));
     }
 
+    @When("^I pass name (.*)$")
+    public void i_pass_name_$name(String name) {
+        givenName = name;
+    }
+
+    @Then("^result for defined name (.*) is correct$")
+    public void result_for_defined_name_$name_is_correct(String name) {
+        Assert.assertEquals("Expected value should be different", "Hello, " + name, writeService.action(givenName));
+    }
+
+    @Then("^result for name (.*) is (.*)$")
+    public void result_for_name_$name_is_$expectedResult(String name, String expectedResult) {
+        Assert.assertEquals("Expected value should be different", expectedResult, writeService.action(givenName));
+    }
 }
