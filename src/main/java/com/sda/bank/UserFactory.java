@@ -12,4 +12,8 @@ public class UserFactory {
         return new User(counter++, firstName, lastName);
     }
 
+    public static void clearIndex() {
+        counter = 0;
+    }
+
 }

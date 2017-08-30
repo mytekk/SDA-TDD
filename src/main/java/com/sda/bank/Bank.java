@@ -27,6 +27,31 @@ public class Bank {
         this.users.add(user);
     }
 
+    //ta metoda bedzie testowana
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    //metoda pomocnicza do pobierania jednego konta
+    public Account getAccount(Integer id) {
+        Account account = null;
+
+        if (id < accounts.size() && id >= 0) {
+            account = accounts.get(id);
+        }
+        return account;
+    }
+
+    //metoda pomocnicza do pobierania jednego konta
+    public User getUser(Integer id) {
+        User user = null;
+
+        if (id < accounts.size() && id >= 0) {
+            user = users.get(id);
+        }
+        return user;
+    }
+
     public String getName() {
         return name;
     }

@@ -20,6 +20,11 @@ public class Account {
         this.ownerId = ownerId;
     }
 
+    public Account(Integer id, Integer balance) {
+        this.id = id;
+        this.balance = balance;
+    }
+
     public Integer getId() {
         return id;
     }
