@@ -16,3 +16,15 @@ Feature: Bank Account
     Then User is present in bank database
     And Account is present in bank database
     And User is attached to account in bank database
+
+  Scenario: I can list all accounts attached to given user
+    Given I create new bank
+    When I create new user with firstName Adam and lastName Nowak and add it to bank
+    And I create new user with firstName Bartek and lastName Nowak and add it to bank
+    And I create new account for user 0 and add it to bank
+    And I create new account for user 1 and add it to bank
+    And I create new account for user 0 and add it to bank
+    Then User with id 0 is present in bank database
+    And User with id 0 has 2 accounts
+
+

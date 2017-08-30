@@ -2,6 +2,7 @@ package com.sda.bank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by RENT on 2017-08-30.
@@ -30,6 +31,12 @@ public class Bank {
     //ta metoda bedzie testowana
     public void addAccount(Account account) {
         this.accounts.add(account);
+    }
+
+    public List<Account> getAccountsByUser(Integer userId) {
+        return this.accounts.stream()
+                .filter(e -> e.getOwnerId().equals(userId))
+                .collect(Collectors.toList());
     }
 
     //metoda pomocnicza do pobierania jednego konta
