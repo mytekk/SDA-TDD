@@ -27,4 +27,12 @@ Feature: Bank Account
     Then User with id 0 is present in bank database
     And User with id 0 has 2 accounts
 
+  Scenario: I can deposit some money to account stored in bank
+    Given I create new bank
+    When I create new account
+    And I add account to bank
+    And I add 15 units of money to account
+    Then Account is present in bank database
+    And Amount of money in account is 15
+
 

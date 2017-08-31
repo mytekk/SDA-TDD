@@ -49,7 +49,7 @@ public class Bank {
         return account;
     }
 
-    //metoda pomocnicza do pobierania jednego konta
+    //metoda pomocnicza do pobierania jednego usera
     public User getUser(Integer id) {
         User user = null;
 
@@ -57,6 +57,16 @@ public class Bank {
             user = users.get(id);
         }
         return user;
+    }
+
+    //dodaje kase do konta
+    public void depositFor(Integer amount, Integer accountId) {
+        //Account account = this.getAccounts().get(accountId);
+        //lub
+        Account account = getAccount(accountId);
+
+
+        account.setBalance(account.getBalance() + amount);
     }
 
     public String getName() {
