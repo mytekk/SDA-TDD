@@ -69,6 +69,19 @@ public class Bank {
         account.setBalance(account.getBalance() + amount);
     }
 
+    //lista userow od najbogatszego
+    public List<User> getUsersSortedByBalance() {
+
+        return accounts.stream()
+                .collect(Collectors.groupingBy(account -> account.getOwnerId()))  //przeraibiam liste accountow na mape: user <->lista jego kont
+                .entrySet() //przerabiamy mape na "liste" (kolekcje, zbiór) par user <->lista jego kont
+                .stream() //przebiegam po tej "liscie"
+                .map(e -> UserSummary.convert(e)) // przerabiamy pojedynczy element z tej "listy" na typ UserSummary
+                .sorted() //sortujemy (nadal mam strumien obiektow UserSummary, ale juz posortowana)
+                .map(e -> getUser(e.getUserId()))  //przewrabiam to na strumien userow
+                .collect(Collectors.toList()); //i nakoncu laduje to do listy userow
+    }
+
     public String getName() {
         return name;
     }

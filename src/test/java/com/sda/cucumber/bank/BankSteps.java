@@ -18,6 +18,7 @@ public class BankSteps {
     private Bank bank;
     private User user;
     private Account account;
+    private List<User> usersSortedByBalance;
 
     @Given("^I create new bank$")
     public void i_create_new_bank() {
@@ -125,6 +126,27 @@ public class BankSteps {
         Account account = bank.getAccount(this.account.getId());
 
         Assert.assertEquals("Wrong amount of money in account", expectedAmount, account.getBalance());
+    }
+
+    /////////////////////////////////////////
+
+    @And("^I add (.*) units of money to account with id (.*)$")
+    public void i_add_$money_units_of_money_to_account_with_id_$accountId(Integer money, Integer accountId) {
+        //dodaje kase
+        this.bank.depositFor(money, accountId);
+    }
+
+    @And("^I list sorted users by balance$")
+    public void i_list_sorted_users_by_balance() {
+        this.usersSortedByBalance = this.bank.getUsersSortedByBalance();
+    }
+
+    @Then("^User with id (.*) is on top of the list$")
+    public void user_with_id_$userId_is_on_top_of_the_list(Integer expectedId) {
+        User topUser = this.usersSortedByBalance.get(0);
+        Integer topUserId = topUser.getId();
+
+        Assert.assertEquals("There should be different user is at the first place on list", expectedId, topUserId);
     }
 
 }
