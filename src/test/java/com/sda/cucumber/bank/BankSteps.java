@@ -113,13 +113,13 @@ public class BankSteps {
 
     /////////////////////////////////
 
-    @And("^I add (.*) units of money to account$")
+    @And("^I add (-?.*) units of money to account$")
     public void i_add_$newAmount_units_of_money_to_account(Integer newAmount) {
         //dodaje kase
         this.bank.depositFor(newAmount, this.account.getId());
     }
 
-    @And("^Amount of money in account is (.*)$")
+    @And("^Amount of money in account is (-?.*)$")
     public void amount_of_money_in_account_is_$expectedAmount(Integer expectedAmount) {
         //pobieram konto z banku
         Account account = bank.getAccount(this.account.getId());

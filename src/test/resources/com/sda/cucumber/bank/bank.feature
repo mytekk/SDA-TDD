@@ -35,4 +35,14 @@ Feature: Bank Account
     Then Account is present in bank database
     And Amount of money in account is 15
 
+    Scenario: I can deposit multiple times to the same account
+      Given I create new bank
+      When I create new account
+      And I add account to bank
+      And I add 15 units of money to account
+      And I add 15 units of money to account
+      And I add -5 units of money to account
+      Then Account is present in bank database
+      And Amount of money in account is 25
+
 
